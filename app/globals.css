@@ -1,26 +1,156 @@
 @import "tailwindcss";
 
+/* ================================================
+
+   ================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FDFEFB;
+  --foreground: #1B6543;
 }
 
-@theme inline {
+@theme {
+  /* ── Dishora Core Palette ── */
+  --color-hero: #006543;
+  /* Hero section bg */
+  --color-evergreen: #1B6543;
+  /* Navbar, accent text, body text */
+  --color-forest: #092317;
+  /* Footer bg */
+  --color-lime: #DAF966;
+  /* CTA buttons, active states, accents */
+  --color-off-white: #FDFEFB;
+  /* Page background */
+  --color-soft-sage: #B8CFC5;
+  /* Circle button borders, subtle accents */
+  --color-pale-teal: #DDE8E7;
+  /* Section bg variants */
+
+  /* ── Legacy aliases (kept for backward compat) ── */
+  --color-green-deep: #092317;
+  --color-green-primary: #006543;
+  --color-green-mid: #1B6543;
+  --color-green-light: #52B788;
+  --color-green-soft: #B8CFC5;
+  --color-green-pale: #DDE8E7;
+
+  /* ── Neutral Grays ── */
+  --color-gray-dark: #17191C;
+  --color-gray-slate: #444441;
+  --color-gray-mid: #888780;
+  --color-gray-light: #D3D1C7;
+  --color-gray-pale: #F1EFE8;
+
+  /* ── Typography Tokens ── */
+  --font-display: 'Anton', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-sans: var(--font-display);
+  --font-mono: 'Geist Mono', monospace;
+  --font-heading: var(--font-display);
+
+  /* ── Background/Foreground ── */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base Styles ── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Anton heading defaults ── */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/* ── Dishora Section Spacing Helpers ── */
+@layer utilities {
+
+  .section-standard {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .section-hero {
+    padding-top: 85px;
+    padding-bottom: 0;
+  }
+
+  .section-menu {
+    padding-top: 180px;
+    padding-bottom: 180px;
+  }
+
+  .section-blog {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .section-footer {
+    padding-top: 100px;
+    padding-bottom: 80px;
+  }
+
+  .container-dishora {
+    max-width: 1536px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  /* ── Text Gradients ── */
+  .text-gradient-lime {
+    @apply bg-gradient-to-r from-[#DAF966] to-[#B8CFC5] bg-clip-text text-transparent;
+  }
+
+  .text-gradient-green {
+    @apply bg-gradient-to-r from-[#006543] via-[#1B6543] to-[#40916C] bg-clip-text text-transparent;
+  }
+
+  .text-gradient-green-deep {
+    @apply bg-gradient-to-r from-[#006543] to-[#1B6543] bg-clip-text text-transparent;
+  }
+
+  /* ── Price / Badge Pills ── */
+  .badge-lime {
+    @apply bg-[#DAF966] text-[#1B6543] font-['Anton'] uppercase text-sm px-3 py-1 rounded-full tracking-wide;
+  }
+
+  /* ── Menu Tab Pills ── */
+  .tab-active {
+    @apply bg-[#DAF966] text-gray-dark rounded-[99px] px-8 py-3 font-['Anton'] uppercase;
+  }
+
+  .tab-inactive {
+    @apply bg-transparent border border-[#1B6543] text-gray-dark rounded-[99px] px-8 py-3 font-['Anton'] uppercase transition-colors hover:bg-[#DAF966]/20;
+  }
+
+  /* ── Focus Ring ── */
+  .focus-lime {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DAF966] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1B6543];
+  }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
