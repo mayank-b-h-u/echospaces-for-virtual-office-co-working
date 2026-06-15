@@ -19,6 +19,7 @@ export default function CallModal({ isOpen, onClose }: Props) {
     name: "",
     mobile: "",
     solution: "",
+    city: "",
   });
 
   useEffect(() => {
@@ -85,6 +86,11 @@ export default function CallModal({ isOpen, onClose }: Props) {
       return;
     }
 
+    if (formData.city.trim().length <= 1) {
+      toast.error("Please select a city");
+      return;
+    }
+
     toast.success(
       "Thank you for contacting us! We will get back to you soon."
     );
@@ -93,6 +99,7 @@ export default function CallModal({ isOpen, onClose }: Props) {
       name: "",
       mobile: "",
       solution: "",
+      city: "",
     });
 
     setTimeout(() => {
@@ -116,7 +123,7 @@ export default function CallModal({ isOpen, onClose }: Props) {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={onClose}
-              className="fixed inset-0 bg-[#092317]/80 backdrop-blur-sm z-[99998]"
+              className="fixed inset-0 bg-[#092317]/80 backdrop-blur-sm z-[100]"
             />
 
             {/* Modal Wrapper */}
@@ -126,7 +133,7 @@ export default function CallModal({ isOpen, onClose }: Props) {
               exit={{ opacity: 0, scale: 0.95, y: 30 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
               className="
-                fixed inset-0 z-[99999]
+                fixed inset-0 z-[100]
                 flex items-center justify-center
                 p-4 overflow-y-auto
               "
@@ -201,7 +208,7 @@ export default function CallModal({ isOpen, onClose }: Props) {
                     <input
                       type="text"
                       id="mobile"
-                      required
+                      required suppressHydrationWarning
                       name="mobile"
                       value={formData.mobile}
                       onChange={handleChange}
@@ -210,30 +217,48 @@ export default function CallModal({ isOpen, onClose }: Props) {
                       className="w-full rounded-[12px] px-4 py-3 border border-[#1B6543] bg-[#006543]/20 text-[#FDFEFB] focus:outline-none focus:ring-2 focus:ring-[#DAF966] focus:border-transparent transition-all placeholder:text-[#1B6543]"
                     />
                   </div>
-                  
-                  <div className="flex flex-col gap-1">
-                    <label htmlFor="solution" className="text-[#B8CFC5] font-['Anton'] text-sm tracking-widest uppercase">
-                      Looking For
-                    </label>
-                    <select
-                      id="solution"
-                      name="solution"
-                      value={formData.solution}
-                      onChange={handleChange}
-                      className="w-full rounded-[12px] px-4 py-3 border border-[#1B6543] bg-[#006543]/20 text-[#FDFEFB] focus:outline-none focus:ring-2 focus:ring-[#DAF966] focus:border-transparent transition-all appearance-none"
-                    >
-                      <option value="" className="bg-[#092317] text-[#FDFEFB]">Select Solution</option>
-                      <option value="All Solutions" className="bg-[#092317] text-[#FDFEFB]">All Solutions</option>
-                      <option value="Virtual Office" className="bg-[#092317] text-[#FDFEFB]">Virtual Office</option>
-                      <option value="Business Plan" className="bg-[#092317] text-[#FDFEFB]">Business Plan</option>
-                      <option value="Mailing Address" className="bg-[#092317] text-[#FDFEFB]">Mailing Address</option>
-                      <option value="Dedicated Desk" className="bg-[#092317] text-[#FDFEFB]">Dedicated Desk</option>
-                      <option value="Meeting Room" className="bg-[#092317] text-[#FDFEFB]">Meeting Room</option>
-                      <option value="Mailbox" className="bg-[#092317] text-[#FDFEFB]">Mailbox</option>
-                    </select>
+                  <div className="flex gap-4 grid grid-cols-2">
+                    <div className="flex flex-col gap-1 ">
+                      <label htmlFor="solution" className="text-[#B8CFC5] font-['Anton'] text-sm tracking-widest uppercase">
+                        Looking For
+                      </label>
+                      <select
+                        id="solution"
+                        name="solution"
+                        value={formData.solution}
+                        onChange={handleChange}
+                        className="w-full rounded-[12px] px-4 py-3 border border-[#1B6543] bg-[#006543]/20 text-[#FDFEFB] focus:outline-none focus:ring-2 focus:ring-[#DAF966] focus:border-transparent transition-all appearance-none"
+                      >
+                        <option value="" className="bg-[#092317] text-[#FDFEFB]">Select Solution</option>
+                        <option value="All Solutions" className="bg-[#092317] text-[#FDFEFB]">All Solutions</option>
+                        <option value="Virtual Office" className="bg-[#092317] text-[#FDFEFB]">Virtual Office</option>
+                        <option value="Business Plan" className="bg-[#092317] text-[#FDFEFB]">Co-working space</option>
+
+                      </select>
+                    </div>
+
+
+                    {/* select the city  noida,delhi ,gurugram*/}
+
+                    <div className="flex flex-col gap-1">
+                      <label htmlFor="city" className="text-[#B8CFC5] font-['Anton'] text-sm tracking-widest uppercase">
+                        City
+                      </label>
+                      <select
+                        id="city"
+                        name="city"
+                        value={formData.city}
+                        onChange={handleChange}
+                        className="w-full rounded-[12px] px-4 py-3 border border-[#1B6543] bg-[#006543]/20 text-[#FDFEFB] focus:outline-none focus:ring-2 focus:ring-[#DAF966] focus:border-transparent transition-all appearance-none"
+                      >
+                        <option value="" className="bg-[#092317] text-[#FDFEFB]">Select City</option>
+                        <option value="noida" className="bg-[#092317] text-[#FDFEFB]">Noida</option>
+                        <option value="gurugram" className="bg-[#092317] text-[#FDFEFB]">Gurugram</option>
+                        <option value="delhi" className="bg-[#092317] text-[#FDFEFB]">Delhi</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
-
                 {/* CTA */}
                 <div className="flex gap-4 items-center">
                   <div className="flex-1">

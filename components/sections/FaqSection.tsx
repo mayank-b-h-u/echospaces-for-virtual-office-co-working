@@ -38,24 +38,22 @@ export default function FaqSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.06 }}
-                className={`overflow-hidden rounded-[20px] border transition-all duration-300 ${
-                  isOpen
-                    ? "border-[#DAF966] bg-[#1B6543]"
-                    : "border-[#B8CFC5]/60 bg-white hover:border-[#1B6543]/40"
-                }`}
+                className={`w-full max-w-[900px] mx-auto overflow-hidden rounded-[20px] border transition-all duration-300 ${isOpen
+                  ? "border-[#DAF966] bg-[#1B6543]"
+                  : "border-[#B8CFC5]/60 bg-white hover:border-[#1B6543]/40"
+                  }`}
               >
                 <button
                   onClick={() => setOpenId(isOpen ? null : item.id)}
-                  className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DAF966]"
+                  className="flex items-center justify-between gap-4 px-6 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DAF966]"
                   aria-expanded={isOpen}
                 >
                   <span className={`font-['Anton'] uppercase tracking-wide text-base ${isOpen ? "text-[#DAF966]" : "text-[#1B6543]"}`}>
                     {item.question}
                   </span>
                   <ChevronDown
-                    className={`h-5 w-5 shrink-0 transition-transform duration-300 ${
-                      isOpen ? "rotate-180 text-[#DAF966]" : "text-[#1B6543]"
-                    }`}
+                    className={`h-5 w-5 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 text-[#DAF966]" : "text-[#1B6543]"
+                      }`}
                   />
                 </button>
 

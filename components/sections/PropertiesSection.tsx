@@ -10,10 +10,12 @@ import {
 import { PROPERTY_CARDS } from "../../lib/landing-data";
 import type { Amenity } from "../../types/landing";
 import SecondaryButton from "@/components/ui/SecondaryButton";
+import HelpModel from "../ui/Modals/HelpModel";
 
 const iconMap: Record<string, React.ElementType> = {
   AirVent, ParkingSquare, Bike, Camera, ArrowUpDown, Wifi, Zap, Shield, Sparkles,
 };
+
 
 const containerVariants = {
   hidden: {},
@@ -36,6 +38,7 @@ function AmenityIcon({ amenity }: { amenity: Amenity }) {
 
 function PropertyCardComponent({ card }: { card: typeof PROPERTY_CARDS[0] }) {
   const [imgIdx, setImgIdx] = useState(0);
+  const [open, setOpen] = useState(false);
 
   return (
     <motion.div
@@ -55,9 +58,8 @@ function PropertyCardComponent({ card }: { card: typeof PROPERTY_CARDS[0] }) {
         {/* Badges */}
         <div className="absolute left-3 top-3 flex gap-2">
           <span className="badge-lime">{card.badge}</span>
-          <span className={`rounded-full px-3 py-1 text-xs font-['Anton'] uppercase text-white ${
-            card.status === "FULLY FURNISHED" ? "bg-[#1B6543]" : "bg-[#006543]"
-          }`}>
+          <span className={`rounded-full px-3 py-1 text-xs font-['Anton'] uppercase text-white ${card.status === "FULLY FURNISHED" ? "bg-[#1B6543]" : "bg-[#006543]"
+            }`}>
             {card.status}
           </span>
         </div>
@@ -112,12 +114,12 @@ function PropertyCardComponent({ card }: { card: typeof PROPERTY_CARDS[0] }) {
 
         {/* CTAs */}
         <div className="flex gap-3 pt-1">
-          <Link
-            href="/contact"
+          <button
+            onClick={() => setOpen(true)}
             className="flex-1 rounded-[99px] bg-[#DAF966] py-2.5 text-center font-['Anton'] text-sm uppercase tracking-wide text-[#1B6543] transition-all hover:bg-[#1B6543] hover:text-[#DAF966]"
           >
             Enquiry
-          </Link>
+          </button>
           <Link
             href={`/office-space/${card.id}`}
             className="flex-1 rounded-[99px] border border-[#1B6543] py-2.5 text-center font-['Anton'] text-sm uppercase tracking-wide text-[#1B6543] transition-all hover:bg-[#1B6543] hover:text-[#DAF966]"
@@ -126,6 +128,9 @@ function PropertyCardComponent({ card }: { card: typeof PROPERTY_CARDS[0] }) {
           </Link>
         </div>
       </div>
+
+      {/* HelpModel Modal */}
+      <HelpModel isOpen={open} onClose={() => setOpen(false)} />
     </motion.div>
   );
 }

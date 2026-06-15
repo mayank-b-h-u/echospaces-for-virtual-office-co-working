@@ -46,9 +46,14 @@ export default function Navbar() {
 
           {/* ── Logo ── */}
           <Link href="/" className="flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-[#DAF966] rounded">
-            <span className="font-['Anton'] text-lg uppercase text-[#DAF966] tracking-widest">
-              {navbarData.logoText}
-            </span>
+            <Image
+              src={navbarData.logo}
+              alt="EchoSpaces"
+              width={150}
+              height={150}
+              className="object-contain"
+            />
+
           </Link>
 
           {/* ── Desktop Nav Links ── */}

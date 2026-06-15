@@ -52,7 +52,7 @@ export default function RootLayout({
       >
         <ScrollProgress />
         <ScrollToTop />
-        <MousePathTracker />
+
         <Navbar />
         <main className="w-full flex-1 flex flex-col">{children}</main>
         <Footer />

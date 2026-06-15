@@ -13,8 +13,10 @@ export type NavbarItem = {
 };
 
 export type NavbarData = {
-  logoText: string;
+  logo: string;
+  logoText?: string;
   phoneNumber: string;
   ctaText: string;
+  ctaLink: string;
   links: NavbarItem[];
 };
